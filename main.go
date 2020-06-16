@@ -14,7 +14,6 @@ import (
 	"os/signal"
 	"os/user"
 	"path/filepath"
-	"regexp"
 	"strconv"
 	"strings"
 	"syscall"
@@ -26,7 +25,6 @@ import (
 
 var (
 	aviliableAccountlist                                                                                 []string
-	reTransfer                                                                                           = regexp.MustCompile(`Transferred:\s+(\d+) / (\d+), (\d+)%`)
 	maxCount, startIndex, exitIfDownloadQuotaExceeded, downloadQuotaExceeded, transfers, currentId, port int
 	speedLessThan                                                                                        int64
 	speed                                                                                                float64
@@ -48,7 +46,6 @@ const DriveServerSideAcrossConfigs = "--drive-server-side-across-configs"
 func init() {
 	flag.IntVar(&maxCount, "c", 5, "max count of no transfer")
 	flag.IntVar(&port, "p", 7788, "listen port")
-	// 	flag.IntVar(&startIndex, "s", 0, "start index")
 	flag.IntVar(&transfers, "x", 10, "concurrent transfers")
 	flag.Int64Var(&speedLessThan, "sp", 10000000, "speed less then")
 	flag.IntVar(&exitIfDownloadQuotaExceeded, "eqe", 0, "exitIfDownloadQuotaExceeded")
