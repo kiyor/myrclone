@@ -22,6 +22,9 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
+	for _, v := range sas {
+		log.Println("found sa", v.Name)
+	}
 	c := core.Conf{
 		SAS: sas,
 	}
@@ -33,7 +36,8 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
-	f, err := os.Create(filepath.Join(home, ".config/rclone/rclone.conf"))
+	path := filepath.Join(home, ".config/rclone/rclone.conf")
+	f, err := os.Create(path)
 	if err != nil {
 		log.Println(err)
 	}
@@ -41,4 +45,5 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
+	log.Println("success write to", path)
 }
